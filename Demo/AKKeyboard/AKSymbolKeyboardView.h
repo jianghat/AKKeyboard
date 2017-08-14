@@ -12,7 +12,7 @@
 @interface AKSymbolKeyboardView : UIView
 
 @property (nonatomic, weak) id<AKKeyboardViewDelegate> delegate;
-@property (nonatomic, weak) UITextField<UITextInput> *textInput;
+//@property (nonatomic, weak) UITextField<UITextInput> *textInput;
 @property (nonatomic) AKKeyboardViewType keyboardType;
 @property (nonatomic) BOOL random;
 

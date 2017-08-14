@@ -12,8 +12,7 @@ typedef NS_ENUM(NSInteger, AKKeyboardViewType) {
   AKKeyboardViewTypeDefault = 100,
   AKKeyboardViewTypeInt,
   AKKeyboardViewTypeFloat,
-  AKKeyboardViewTypeIDCard,
-  AKKeyboardViewTypeWord
+  AKKeyboardViewTypeIDCard
 };
 
 @protocol AKKeyboardViewDelegate <NSObject>
@@ -24,5 +23,10 @@ typedef NS_ENUM(NSInteger, AKKeyboardViewType) {
 - (void)keyboardView:(UIView *)keyboardView didClickedNumberSwitchButton:(UIButton *)button;
 
 - (void)keyboardView:(UIView *)keyboardView didClickedSymbolSwitchButton:(UIButton *)button;
+
+@required
+- (void)keyboardView:(UIView *)keyboardView didClickedTextButton:(UIButton *)button;
+
+- (void)keyboardView:(UIView *)keyboardView didClickedDeleteButton:(UIButton *)button;
 
 @end

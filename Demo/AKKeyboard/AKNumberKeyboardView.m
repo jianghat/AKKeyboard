@@ -106,23 +106,18 @@
   }
   
   _decimalButton = [self button:@"." image:normalImage selectedImage:selectedImage];
-  @weakify(self);
-  [_decimalButton setBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
-    @strongify(self);
-    NSString *text = [sender titleForState:UIControlStateNormal];
-    if ([text isEqualToString:@"."] && [self.textInput.text containsString:@"."]) {
-      return;
-    }
-    [self.textInput insertText:text];
-  }];
+  [_decimalButton setBackgroundImage:[[UIImage imageNamed:@"AKKeyboard.bundle/c_number_keyboardSwitchButton"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 14, 14, 14)]
+                            forState:UIControlStateDisabled];
+  [_decimalButton addTarget:self action:@selector(numberButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
   
+  @weakify(self);
   _deleteButton = [self button:nil
                          image:[UIImage imageNamed:@"AKKeyboard.bundle/c_number_keyboardDeleteButton"]
                  selectedImage:[UIImage imageNamed:@"AKKeyboard.bundle/c_number_keyboardDeleteButton"]];
-  [_deleteButton setBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
+  [_deleteButton addBlockForControlEvents:UIControlEventTouchDown block:^(id sender) {
     @strongify(self);
-    if(self.textInput.text.length > 0) {
-      [self.textInput deleteBackward];
+    if ([self.delegate respondsToSelector:@selector(keyboardView:didClickedDeleteButton:)]) {
+      [self.delegate keyboardView:self didClickedDeleteButton:self.deleteButton];
     }
   }];
   
@@ -161,8 +156,9 @@
 }
 
 - (void)numberButtonClicked:(id)sender {
-  NSString *title = [sender titleForState:UIControlStateNormal];
-  [self.textInput insertText:title];
+  if ([self.delegate respondsToSelector:@selector(keyboardView:didClickedTextButton:)]) {
+    [self.delegate keyboardView:self didClickedTextButton:sender];
+  }
 }
 
 #pragma mark - Custom Access
@@ -183,12 +179,12 @@
 
 - (void)setKeyboardType:(AKKeyboardViewType)keyboardType {
   _keyboardType = keyboardType;
-  if (_keyboardType & (AKKeyboardViewTypeInt | AKKeyboardViewTypeFloat | AKKeyboardViewTypeIDCard)) {
+  if (_keyboardType == AKKeyboardViewTypeInt || _keyboardType == AKKeyboardViewTypeFloat || _keyboardType == AKKeyboardViewTypeIDCard) {
     self.symbolButton.hidden = YES;
     self.textButton.hidden = YES;
-    
+    self.decimalButton.enabled = YES;
     if (_keyboardType == AKKeyboardViewTypeInt) {
-      self.decimalButton.hidden = YES;
+      self.decimalButton.enabled = NO;
     }
     else if (_keyboardType == AKKeyboardViewTypeFloat) {
       [self.decimalButton setTitle:@"." forState:UIControlStateNormal];

@@ -30,11 +30,9 @@
 
 - (void)willMoveToSuperview:(UIView *)newSuperview {
   if (!newSuperview) return;
-  
-  if (_keyboardType & (AKKeyboardViewTypeInt | AKKeyboardViewTypeFloat | AKKeyboardViewTypeIDCard)) {
+  if (_keyboardType == AKKeyboardViewTypeInt || _keyboardType == AKKeyboardViewTypeFloat || _keyboardType == AKKeyboardViewTypeIDCard) {
     [self keyboardView:nil didClickedNumberSwitchButton:nil];
-  }
-  else {
+  } else {
     [self keyboardView:nil didClickedTextSwitchButton:nil];
   }
 }
@@ -45,34 +43,43 @@
   [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
   AKSymbolKeyboardView *symbolKeyboardView = [[AKSymbolKeyboardView alloc] initWithFrame:self.bounds];
   symbolKeyboardView.keyboardType = _keyboardType;
-  symbolKeyboardView.textInput = _textInput;
   symbolKeyboardView.delegate = self;
   symbolKeyboardView.random = _random;
   [self addSubview:symbolKeyboardView];
 }
 
-#pragma mark - AKNumberKeyboardDelegate
-
 - (void)keyboardView:(UIView *)keyboardView didClickedTextSwitchButton:(UIButton *)textButton {
   [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
   AKLetterKeyboardView *letterKeyboardView = [[AKLetterKeyboardView alloc] initWithFrame:self.bounds];
   letterKeyboardView.keyboardType = _keyboardType;
-  letterKeyboardView.textInput = _textInput;
   letterKeyboardView.delegate = self;
   letterKeyboardView.random = _random;
   [self addSubview:letterKeyboardView];
 }
 
-#pragma mark - AKLetterKeyboardViewDelegate
-
 - (void)keyboardView:(UIView *)keyboardView didClickedNumberSwitchButton:(UIButton *)button {
   [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
   AKNumberKeyboardView *numberKeyboardView = [[AKNumberKeyboardView alloc] initWithFrame:self.bounds];
   numberKeyboardView.keyboardType = _keyboardType;
-  numberKeyboardView.textInput = _textInput;
   numberKeyboardView.delegate = self;
   numberKeyboardView.random = _random;
   [self addSubview:numberKeyboardView];
+}
+
+- (void)keyboardView:(UIView *)keyboardView didClickedDeleteButton:(UIButton *)button {
+  if (self.textInput.text.length > 0) {
+    [self.textInput deleteBackward];
+  }
+}
+
+- (void)keyboardView:(UIView *)keyboardView didClickedTextButton:(UIButton *)button {
+  NSString *title = [button titleForState:UIControlStateNormal];
+  if ([title rangeOfString:@"空"].location != NSNotFound) {
+    [self.textInput insertText:@" "];
+  }
+  else {
+    [self.textInput insertText:title];
+  }
 }
 
 @end

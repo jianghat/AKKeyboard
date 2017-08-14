@@ -81,20 +81,36 @@
     [self.buttonArray addObject:button];
   }
   
+  @weakify(self);
   _deleteButton = [self button:@""
                          image:[UIImage imageNamed:@"AKKeyboard.bundle/c_symbol_keyboardDeleteButton"]
                  selectedImage:[UIImage imageNamed:@"AKKeyboard.bundle/c_symbol_keyboardDeleteButtonSel"]];
-  [_deleteButton addTarget:self action:@selector(deleteButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+  [_deleteButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
+    @strongify(self);
+    if ([self.delegate respondsToSelector:@selector(keyboardView:didClickedDeleteButton:)]) {
+      [self.delegate keyboardView:self didClickedDeleteButton:sender];
+    }
+  }];
   
   _numberSwitchButton = [self button:@"123"
                                image:[UIImage imageNamed:@"AKKeyboard.bundle/c_number_keyboardSwitchButton"]
                        selectedImage:[UIImage imageNamed:@"AKKeyboard.bundle/c_number_keyboardSwitchButtonSel"]];
-  [_numberSwitchButton addTarget:self action:@selector(numberSwitchButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+  [_numberSwitchButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
+    @strongify(self);
+    if ([self.delegate respondsToSelector:@selector(keyboardView:didClickedNumberSwitchButton:)]) {
+      [self.delegate keyboardView:self didClickedNumberSwitchButton:sender];
+    }
+  }];
   
   _letterSwitchButton = [self button:@"ABC"
                                image:[UIImage imageNamed:@"AKKeyboard.bundle/c_number_keyboardSwitchButton"]
                        selectedImage:[UIImage imageNamed:@"AKKeyboard.bundle/c_number_keyboardSwitchButtonSel"]];
-  [_letterSwitchButton addTarget:self action:@selector(letterSwitchButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+  [_letterSwitchButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
+    @strongify(self);
+    if ([self.delegate respondsToSelector:@selector(keyboardView:didClickedTextSwitchButton:)]) {
+      [self.delegate keyboardView:self didClickedTextSwitchButton:sender];
+    }
+  }];
   [self addSubview:_deleteButton];
   [self addSubview:_numberSwitchButton];
   [self addSubview:_letterSwitchButton];
@@ -110,25 +126,8 @@
 }
 
 - (void)symbolButtonClicked:(UIButton *)sender {
-  NSString *title = [sender titleForState:UIControlStateNormal];
-  [self.textInput insertText:title];
-}
-
-- (void)deleteButtonClicked:(UIButton *)sender {
-  if(self.textInput.text.length > 0) {
-    [self.textInput deleteBackward];
-  }
-}
-
-- (void)numberSwitchButtonClicked:(UIButton *)sender {
-  if ([self.delegate respondsToSelector:@selector(keyboardView:didClickedNumberSwitchButton:)]) {
-    [self.delegate keyboardView:self didClickedNumberSwitchButton:sender];
-  }
-}
-
-- (void)letterSwitchButtonClicked:(UIButton *)sender {
-  if ([self.delegate respondsToSelector:@selector(keyboardView:didClickedTextSwitchButton:)]) {
-    [self.delegate keyboardView:self didClickedTextSwitchButton:sender];
+  if ([self.delegate respondsToSelector:@selector(keyboardView:didClickedTextButton:)]) {
+    [self.delegate keyboardView:self didClickedTextButton:sender];
   }
 }
 
