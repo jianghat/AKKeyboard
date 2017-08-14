@@ -14,6 +14,7 @@
 		7835F9DE1F41402800181C28 /* AKLetterKeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835F9D11F41402800181C28 /* AKLetterKeyboardView.m */; };
 		7835F9DF1F41402800181C28 /* AKNumberKeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835F9D31F41402800181C28 /* AKNumberKeyboardView.m */; };
 		7835F9E01F41402800181C28 /* AKSymbolKeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835F9D51F41402800181C28 /* AKSymbolKeyboardView.m */; };
+		78A20EFD1F415A3000865442 /* UIControl+AKAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A20EFC1F415A3000865442 /* UIControl+AKAdd.m */; };
 		78AC6F791F38101E00AF496D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AC6F781F38101E00AF496D /* main.m */; };
 		78AC6F7C1F38101E00AF496D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AC6F7B1F38101E00AF496D /* AppDelegate.m */; };
 		78AC6F7F1F38101E00AF496D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AC6F7E1F38101E00AF496D /* ViewController.m */; };
@@ -37,6 +38,8 @@
 		7835F9D31F41402800181C28 /* AKNumberKeyboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNumberKeyboardView.m; sourceTree = "<group>"; };
 		7835F9D41F41402800181C28 /* AKSymbolKeyboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKSymbolKeyboardView.h; sourceTree = "<group>"; };
 		7835F9D51F41402800181C28 /* AKSymbolKeyboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKSymbolKeyboardView.m; sourceTree = "<group>"; };
+		78A20EFB1F415A3000865442 /* UIControl+AKAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+AKAdd.h"; sourceTree = "<group>"; };
+		78A20EFC1F415A3000865442 /* UIControl+AKAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+AKAdd.m"; sourceTree = "<group>"; };
 		78AC6F741F38101E00AF496D /* AKKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AKKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78AC6F781F38101E00AF496D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		78AC6F7A1F38101E00AF496D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -116,6 +119,8 @@
 		7835F9C41F41402800181C28 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				78A20EFB1F415A3000865442 /* UIControl+AKAdd.h */,
+				78A20EFC1F415A3000865442 /* UIControl+AKAdd.m */,
 				7835F9CB1F41402800181C28 /* UIView+AKAdd.h */,
 				7835F9CC1F41402800181C28 /* UIView+AKAdd.m */,
 			);
@@ -240,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7835F9DC1F41402800181C28 /* UIView+AKAdd.m in Sources */,
+				78A20EFD1F415A3000865442 /* UIControl+AKAdd.m in Sources */,
 				7835F9D81F41402800181C28 /* AKKeyboardView.m in Sources */,
 				7835F9DE1F41402800181C28 /* AKLetterKeyboardView.m in Sources */,
 				78AC6F7F1F38101E00AF496D /* ViewController.m in Sources */,
