@@ -15,11 +15,9 @@ Pod::Spec.new do |s|
   s.author       = { "ak" => "549488710@qq.com" }
   s.platform     = :ios, "7.0"
   s.source       = { :git => "https://github.com/jianghat/AKKeyboard.git", :tag => "#{s.version}" }
-  s.source_files = "AKKeyboard/*"
+s.source_files = "AKKeyboard", "AKKeyboard/**/*.{h,m}"
   s.resources = "AKKeyboard/AKKeyboard.bundle"
   s.framework  = "UIKit"
   s.requires_arc = true
-  # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # s.dependency "JSONKit", "~> 1.4"
 
 end
