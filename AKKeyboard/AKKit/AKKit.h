@@ -10,7 +10,5 @@
 
 #import "AKKitMacro.h"
 
-#import "UIImage+AKAdd.h"
 #import "UIControl+AKAdd.h"
-#import "UITextField+AKAdd.h"
 #import "UIView+AKAdd.h"

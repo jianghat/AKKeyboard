@@ -96,8 +96,8 @@
 }
 
 - (void)addControl {
-  UIImage *normalImage = [[UIImage imageNamed:@"c_charKeyboardButton"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 14, 14, 14)];
-  UIImage *selectedImage = [[UIImage imageNamed:@"c_charKeyboardButtonSel"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 14, 14, 14)];
+  UIImage *normalImage = [[UIImage imageNamed:@"AKKeyboard.bundle/c_charKeyboardButton"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 14, 14, 14)];
+  UIImage *selectedImage = [[UIImage imageNamed:@"AKKeyboard.bundle/c_charKeyboardButtonSel"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 14, 14, 14)];
   for (NSString *title in self.numberArray) {
     UIButton *button = [self button:title image:normalImage selectedImage:selectedImage];
     [button addTarget:self action:@selector(numberButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -116,7 +116,9 @@
     [self.textInput insertText:text];
   }];
   
-  _deleteButton = [self button:nil image:[UIImage imageNamed:@"c_number_keyboardDeleteButton"] selectedImage:[UIImage imageNamed:@"c_number_keyboardDeleteButton"]];
+  _deleteButton = [self button:nil
+                         image:[UIImage imageNamed:@"AKKeyboard.bundle/c_number_keyboardDeleteButton"]
+                 selectedImage:[UIImage imageNamed:@"AKKeyboard.bundle/c_number_keyboardDeleteButton"]];
   [_deleteButton setBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
     @strongify(self);
     if(self.textInput.text.length > 0) {
@@ -124,7 +126,9 @@
     }
   }];
   
-  _symbolButton = [self button:@"#+=" image:[UIImage imageNamed:@"c_number_keyboardSwitchButton"] selectedImage:[UIImage imageNamed:@"c_number_keyboardSwitchButtonSel"]];
+  _symbolButton = [self button:@"#+="
+                         image:[UIImage imageNamed:@"AKKeyboard.bundle/c_number_keyboardSwitchButton"]
+                 selectedImage:[UIImage imageNamed:@"AKKeyboard.bundle/c_number_keyboardSwitchButtonSel"]];
   [_symbolButton setBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
     @strongify(self);
     if ([self.delegate respondsToSelector:@selector(keyboardView:didClickedSymbolSwitchButton:)]) {
@@ -132,7 +136,9 @@
     }
   }];
   
-  _textButton = [self button:@"ABC" image:[UIImage imageNamed:@"c_number_keyboardSwitchButton"] selectedImage:[UIImage imageNamed:@"c_number_keyboardSwitchButtonSel"]];
+  _textButton = [self button:@"ABC"
+                       image:[UIImage imageNamed:@"AKKeyboard.bundle/c_number_keyboardSwitchButton"]
+               selectedImage:[UIImage imageNamed:@"AKKeyboard.bundle/c_number_keyboardSwitchButtonSel"]];
   [_textButton setBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
     @strongify(self);
     if ([self.delegate respondsToSelector:@selector(keyboardView:didClickedTextSwitchButton:)]) {

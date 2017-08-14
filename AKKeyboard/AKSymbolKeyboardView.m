@@ -72,8 +72,8 @@
 }
 
 - (void)addControl {
-  UIImage *normalImage = [[UIImage imageNamed:@"c_charKeyboardButton"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 14, 14, 14)];
-  UIImage *selectedImage = [[UIImage imageNamed:@"c_charKeyboardButtonSel"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 14, 14, 14)];
+  UIImage *normalImage = [[UIImage imageNamed:@"AKKeyboard.bundle/c_charKeyboardButton"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 14, 14, 14)];
+  UIImage *selectedImage = [[UIImage imageNamed:@"AKKeyboard.bundle/c_charKeyboardButtonSel"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 14, 14, 14)];
   for (NSString *title in self.symbolArray) {
     UIButton *button = [self button:title image:normalImage selectedImage:selectedImage];
     [button addTarget:self action:@selector(symbolButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -81,13 +81,19 @@
     [self.buttonArray addObject:button];
   }
   
-  _deleteButton = [self button:@"" image:[UIImage imageNamed:@"c_symbol_keyboardDeleteButton"] selectedImage:[UIImage imageNamed:@"c_symbol_keyboardDeleteButtonSel"]];
+  _deleteButton = [self button:@""
+                         image:[UIImage imageNamed:@"AKKeyboard.bundle/c_symbol_keyboardDeleteButton"]
+                 selectedImage:[UIImage imageNamed:@"AKKeyboard.bundle/c_symbol_keyboardDeleteButtonSel"]];
   [_deleteButton addTarget:self action:@selector(deleteButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
   
-  _numberSwitchButton = [self button:@"123" image:[UIImage imageNamed:@"c_number_keyboardSwitchButton"] selectedImage:[UIImage imageNamed:@"c_number_keyboardSwitchButtonSel"]];
+  _numberSwitchButton = [self button:@"123"
+                               image:[UIImage imageNamed:@"AKKeyboard.bundle/c_number_keyboardSwitchButton"]
+                       selectedImage:[UIImage imageNamed:@"AKKeyboard.bundle/c_number_keyboardSwitchButtonSel"]];
   [_numberSwitchButton addTarget:self action:@selector(numberSwitchButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
   
-  _letterSwitchButton = [self button:@"ABC" image:[UIImage imageNamed:@"c_number_keyboardSwitchButton"] selectedImage:[UIImage imageNamed:@"c_number_keyboardSwitchButtonSel"]];
+  _letterSwitchButton = [self button:@"ABC"
+                               image:[UIImage imageNamed:@"AKKeyboard.bundle/c_number_keyboardSwitchButton"]
+                       selectedImage:[UIImage imageNamed:@"AKKeyboard.bundle/c_number_keyboardSwitchButtonSel"]];
   [_letterSwitchButton addTarget:self action:@selector(letterSwitchButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
   [self addSubview:_deleteButton];
   [self addSubview:_numberSwitchButton];

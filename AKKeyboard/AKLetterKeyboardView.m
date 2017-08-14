@@ -10,30 +10,30 @@
 #import "AKKit.h"
 
 @interface AKLetterKeyboardView ()
-
-/** 大小写切换按钮 */
-@property (nonatomic, strong) UIButton *trasitionLetterButton;
-
-/** 删除按钮 */
-@property (nonatomic, strong) UIButton *deleteButton;
-
-/** 数字键盘切换按钮 */
-@property (nonatomic, strong) UIButton *numberButton;
-
-/** 符号键盘切换按钮 */
-@property (nonatomic, strong) UIButton *symbolButton;
-
-/** 空格按钮 */
-@property (nonatomic, strong) UIButton *spaceButton;
-
-@property (nonatomic, strong) NSMutableArray *buttonArray;
-@property (nonatomic, copy) NSArray *lowercaseArray;
-@property (nonatomic, copy) NSArray *uppercaseArray;
-
-@end
+  
+  /** 大小写切换按钮 */
+  @property (nonatomic, strong) UIButton *trasitionLetterButton;
+  
+  /** 删除按钮 */
+  @property (nonatomic, strong) UIButton *deleteButton;
+  
+  /** 数字键盘切换按钮 */
+  @property (nonatomic, strong) UIButton *numberButton;
+  
+  /** 符号键盘切换按钮 */
+  @property (nonatomic, strong) UIButton *symbolButton;
+  
+  /** 空格按钮 */
+  @property (nonatomic, strong) UIButton *spaceButton;
+  
+  @property (nonatomic, strong) NSMutableArray *buttonArray;
+  @property (nonatomic, copy) NSArray *lowercaseArray;
+  @property (nonatomic, copy) NSArray *uppercaseArray;
+  
+  @end
 
 @implementation AKLetterKeyboardView
-
+  
 - (instancetype)initWithFrame:(CGRect)frame {
   self = [super initWithFrame:frame];
   if (self) {
@@ -41,7 +41,7 @@
   }
   return self;
 }
-
+  
 - (void)layoutSubviews {
   [super layoutSubviews];
   CGFloat margin = 5;
@@ -90,10 +90,10 @@
     _symbolButton.size = _numberButton.size;
   }
 }
-
+  
 - (void)addControl {
-  UIImage *normalImage = [[UIImage imageNamed:@"c_charKeyboardButton"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 14, 14, 14)];
-  UIImage *selectedImage = [[UIImage imageNamed:@"c_charKeyboardButtonSel"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 14, 14, 14)];
+  UIImage *normalImage = [[UIImage imageNamed:@"AKKeyboard.bundle/c_charKeyboardButton"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 14, 14, 14)];
+  UIImage *selectedImage = [[UIImage imageNamed:@"AKKeyboard.bundle/c_charKeyboardButtonSel"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 14, 14, 14)];
   for (NSString *title in self.lowercaseArray) {
     UIButton *button = [self button:title image:normalImage selectedImage:selectedImage];
     [button addTarget:self action:@selector(letterButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -101,20 +101,30 @@
     [self.buttonArray addObject:button];
   }
   
-  _trasitionLetterButton = [self button:@"" image:[UIImage imageNamed:@"c_charKeyboardShiftButton"] selectedImage:[UIImage imageNamed:@"c_charKeyboardShiftButtonSel"]];
-  [_trasitionLetterButton setBackgroundImage:[UIImage imageNamed:@"c_charKeyboardShiftButtonSel"] forState:UIControlStateSelected];
+  _trasitionLetterButton = [self button:@""
+                                  image:[UIImage imageNamed:@"AKKeyboard.bundle/c_charKeyboardShiftButton"]
+                          selectedImage:[UIImage imageNamed:@"AKKeyboard.bundle/c_charKeyboardShiftButtonSel"]];
+  [_trasitionLetterButton setBackgroundImage:[UIImage imageNamed:@"AKKeyboard.bundle/c_charKeyboardShiftButtonSel"] forState:UIControlStateSelected];
   [_trasitionLetterButton addTarget:self action:@selector(trasitionLetterButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
   
-  _deleteButton = [self button:@"" image:[UIImage imageNamed:@"c_symbol_keyboardDeleteButton"] selectedImage:[UIImage imageNamed:@"c_symbol_keyboardDeleteButtonSel"]];
+  _deleteButton = [self button:@""
+                         image:[UIImage imageNamed:@"AKKeyboard.bundle/c_symbol_keyboardDeleteButton"]
+                 selectedImage:[UIImage imageNamed:@"AKKeyboard.bundle/c_symbol_keyboardDeleteButtonSel"]];
   [_deleteButton addTarget:self action:@selector(deleteButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
   
-  _numberButton = [self button:@"123" image:[UIImage imageNamed:@"c_number_keyboardSwitchButton"] selectedImage:[UIImage imageNamed:@"c_number_keyboardSwitchButtonSel"]];
+  _numberButton = [self button:@"123"
+                         image:[UIImage imageNamed:@"AKKeyboard.bundle/c_number_keyboardSwitchButton"]
+                 selectedImage:[UIImage imageNamed:@"AKKeyboard.bundle/c_number_keyboardSwitchButtonSel"]];
   [_numberButton addTarget:self action:@selector(numberButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
   
-  _symbolButton = [self button:@"#+=" image:[UIImage imageNamed:@"c_number_keyboardSwitchButton"] selectedImage:[UIImage imageNamed:@"c_number_keyboardSwitchButtonSel"]];
+  _symbolButton = [self button:@"#+="
+                         image:[UIImage imageNamed:@"AKKeyboard.bundle/c_number_keyboardSwitchButton"]
+                 selectedImage:[UIImage imageNamed:@"AKKeyboard.bundle/c_number_keyboardSwitchButtonSel"]];
   [_symbolButton addTarget:self action:@selector(symbolButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
   
-  _spaceButton = [self button:@"空 格" image:normalImage selectedImage:selectedImage];
+  _spaceButton = [self button:@"空 格"
+                        image:normalImage
+                selectedImage:selectedImage];
   [_spaceButton addTarget:self action:@selector(spaceButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
   
   [self addSubview:_trasitionLetterButton];
@@ -123,7 +133,7 @@
   [self addSubview:_symbolButton];
   [self addSubview:_spaceButton];
 }
-
+  
 - (UIButton *)button:(NSString *)title image:(UIImage *)image selectedImage:(UIImage *)selectedImage {
   UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
   [button setBackgroundImage:image forState:UIControlStateNormal];
@@ -132,22 +142,22 @@
   [button setTitle:title forState:UIControlStateNormal];
   return button;
 }
-
+  
 - (void)letterButtonClicked:(UIButton *)sender {
   NSString *title = [sender titleForState:UIControlStateNormal];
   [self.textInput insertText:title];
 }
-
+  
 - (void)spaceButtonClicked:(UIButton *)sender {
   [self.textInput insertText:@" "];
 }
-
+  
 - (void)deleteButtonClicked:(UIButton *)sender {
   if(self.textInput.text.length > 0) {
     [self.textInput deleteBackward];
   }
 }
-
+  
 - (void)trasitionLetterButtonClicked:(UIButton *)sender {
   _trasitionLetterButton.selected = !sender.selected;
   for (NSInteger index = 0; index < self.buttonArray.count; index++) {
@@ -160,40 +170,40 @@
     }
   }
 }
-
+  
 - (void)numberButtonClicked:(UIButton *)sender {
   if ([self.delegate respondsToSelector:@selector(keyboardView:didClickedNumberSwitchButton:)]) {
     [self.delegate keyboardView:self didClickedNumberSwitchButton:sender];
   }
 }
-
+  
 - (void)symbolButtonClicked:(UIButton *)sender {
   if ([self.delegate respondsToSelector:@selector(keyboardView:didClickedSymbolSwitchButton:)]) {
     [self.delegate keyboardView:self didClickedSymbolSwitchButton:sender];
   }
 }
-
+  
 #pragma mark - Custom Access
-
+  
 - (NSMutableArray *)buttonArray {
   if (!_buttonArray) {
     _buttonArray = [NSMutableArray new];
   }
   return _buttonArray;
 }
-
+  
 - (NSArray *)lowercaseArray {
   if (!_lowercaseArray) {
     _lowercaseArray = @[@"q",@"w",@"e",@"r",@"t",@"y",@"u",@"i",@"o",@"p",@"a",@"s",@"d",@"f",@"g",@"h",@"j",@"k",@"l",@"z",@"x",@"c",@"v",@"b",@"n",@"m"];
   }
   return _lowercaseArray;
 }
-
+  
 - (NSArray *)uppercaseArray {
   if (!_uppercaseArray) {
     _uppercaseArray = @[@"Q",@"W",@"E",@"R",@"T",@"Y",@"U",@"I",@"O",@"P",@"A",@"S",@"D",@"F",@"G",@"H",@"J",@"K",@"L",@"Z",@"X",@"C",@"V",@"B",@"N",@"M"];
   }
   return _uppercaseArray;
 }
-
-@end
+  
+  @end

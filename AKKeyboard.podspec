@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "AKKeyboard"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "AKKeyboard."
   s.homepage     = "https://github.com/jianghat/AKKeyboard.git"
   s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
